@@ -1,0 +1,390 @@
+openapi: 3.0.3
+info:
+  title: 'Prodict Laravel API'
+  description: API文檔
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/employees:
+    get:
+      summary: 查詢員工
+      operationId: ''
+      description: ''
+      parameters:
+        -
+          in: query
+          name: page
+          description: 頁碼.
+          example: 1
+          required: true
+          schema:
+            type: integer
+            description: 頁碼.
+            example: 1
+        -
+          in: query
+          name: dep_code
+          description: 部門編碼.
+          example: IT
+          required: false
+          schema:
+            type: string
+            description: 部門編碼.
+            example: IT
+        -
+          in: query
+          name: keyword
+          description: 模糊查詢用戶名稱或信箱.
+          example: John
+          required: false
+          schema:
+            type: string
+            description: 模糊查詢用戶名稱或信箱.
+            example: John
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    name: 'John Doe'
+                    email: john@gmail.com
+                    dep_code: IT
+      tags:
+        - Employee
+      security: []
+    post:
+      summary: 新增員工
+      operationId: ''
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Employee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 員工名稱.
+                  example: John
+                email:
+                  type: string
+                  description: 員工信箱.
+                  example: abc@gmail.com
+                dep_code:
+                  type: string
+                  description: 部門編碼.
+                  example: IT
+                password:
+                  type: string
+                  description: 密碼.
+                  example: .u5ws)
+              required:
+                - name
+                - email
+                - dep_code
+                - password
+      security: []
+  '/api/employees/{employee}':
+    put:
+      summary: 員工修改
+      operationId: ''
+      description: ''
+      parameters:
+        -
+          in: query
+          name: id
+          description: 員工ID
+          example: 8
+          required: true
+          schema:
+            type: integer
+            description: 員工ID
+            example: 8
+      responses: {  }
+      tags:
+        - Employee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 員工名稱.
+                  example: John
+                email:
+                  type: string
+                  description: 員工信箱.
+                  example: abc@gmail.com
+                dep_code:
+                  type: string
+                  description: 部門編碼.
+                  example: IT
+                password:
+                  type: string
+                  description: 密碼.
+                  example: 's=+,5o?G6>\SL_NNW'
+              required:
+                - name
+                - email
+                - dep_code
+                - password
+      security: []
+    parameters:
+      -
+        in: path
+        name: employee
+        description: 'The employee.'
+        example: 3
+        required: true
+        schema:
+          type: integer
+  /api/products:
+    get:
+      summary: 查詢產品
+      operationId: ''
+      description: ''
+      parameters:
+        -
+          in: query
+          name: page
+          description: 頁碼.
+          example: 1
+          required: true
+          schema:
+            type: integer
+            description: 頁碼.
+            example: 1
+        -
+          in: query
+          name: keyword
+          description: 模糊查詢產品名稱或內容.
+          example: 可食用
+          required: false
+          schema:
+            type: string
+            description: 模糊查詢產品名稱或內容.
+            example: 可食用
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  current_page: 1
+                  data: []
+                  first_page_url: 'http://localhost/api/products?page=1'
+                  from: null
+                  last_page: 1
+                  last_page_url: 'http://localhost/api/products?page=1'
+                  links:
+                    -
+                      url: null
+                      label: '&laquo; Previous'
+                      active: false
+                    -
+                      url: 'http://localhost/api/products?page=1'
+                      label: '1'
+                      active: true
+                    -
+                      url: null
+                      label: 'Next &raquo;'
+                      active: false
+                  next_page_url: null
+                  path: 'http://localhost/api/products'
+                  per_page: 1
+                  prev_page_url: null
+                  to: null
+                  total: 0
+                properties:
+                  current_page:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    example: []
+                  first_page_url:
+                    type: string
+                    example: 'http://localhost/api/products?page=1'
+                  from:
+                    type: string
+                    example: null
+                  last_page:
+                    type: integer
+                    example: 1
+                  last_page_url:
+                    type: string
+                    example: 'http://localhost/api/products?page=1'
+                  links:
+                    type: array
+                    example:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost/api/products?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    items:
+                      type: object
+                      properties:
+                        url:
+                          type: string
+                          example: null
+                        label:
+                          type: string
+                          example: '&laquo; Previous'
+                        active:
+                          type: boolean
+                          example: false
+                  next_page_url:
+                    type: string
+                    example: null
+                  path:
+                    type: string
+                    example: 'http://localhost/api/products'
+                  per_page:
+                    type: integer
+                    example: 1
+                  prev_page_url:
+                    type: string
+                    example: null
+                  to:
+                    type: string
+                    example: null
+                  total:
+                    type: integer
+                    example: 0
+      tags:
+        - Product
+      security: []
+    post:
+      summary: 新增產品
+      operationId: ''
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 產品名稱.
+                  example: 小米酒
+                description:
+                  type: string
+                  description: 產品說明.
+                  example: 可飲用
+                price:
+                  type: integer
+                  description: 價格.
+                  example: 100
+                stock:
+                  type: integer
+                  description: 數量.
+                  example: 5
+              required:
+                - name
+                - price
+                - stock
+      security: []
+  '/api/products/{product}':
+    put:
+      summary: 修改產品
+      operationId: ''
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 產品名稱.
+                  example: 小米酒
+                description:
+                  type: string
+                  description: 產品說明.
+                  example: 可飲用
+                price:
+                  type: integer
+                  description: 價格.
+                  example: 100
+                stock:
+                  type: integer
+                  description: 數量.
+                  example: 5
+              required:
+                - name
+                - price
+                - stock
+      security: []
+    delete:
+      summary: 刪除產品
+      operationId: ''
+      description: ''
+      parameters:
+        -
+          in: query
+          name: id
+          description: 員工ID
+          example: 7
+          required: true
+          schema:
+            type: integer
+            description: 員工ID
+            example: 7
+      responses: {  }
+      tags:
+        - Product
+      security: []
+    parameters:
+      -
+        in: path
+        name: product
+        description: 'The product.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: Employee
+    description: ''
+  -
+    name: Product
+    description: ''

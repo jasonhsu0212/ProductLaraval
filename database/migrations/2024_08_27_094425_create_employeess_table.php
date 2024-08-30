@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->integer('dep_code');
+            $table->string('dep_code');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();
 
-            $table->foreign('dep_code')->references('code')->on('departments');
         });
     }
 

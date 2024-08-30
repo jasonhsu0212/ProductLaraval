@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Department;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Employee>
@@ -16,8 +17,9 @@ class EmployeeFactory extends Factory
      */
     public function definition(): array
     {
+        $departments = Department::factory(3)->for(Department::factory()->state(['code' => 'IT']))->create();
+
         return [
-            'dep_id' => $this->faker->randomNumber(),
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'password' => 'password',

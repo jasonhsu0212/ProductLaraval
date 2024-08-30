@@ -17,9 +17,9 @@ class ProductService
          $this->productRepository=$productRepository;
      }
 
-     public function lists($size)
+     public function filter(string | null $keyword,int $page)
      {
-         return $this->productRepository->lists($size);
+         return $this->productRepository->find($keyword,$page);
      }
 
     public function getById($id)
@@ -31,8 +31,8 @@ class ProductService
     {
         //validate form
         $request->validate([
-            'title'         => 'required|min:5',
-            'description'   => 'required|min:10',
+            'name'         => 'required|string',
+            'description'   => 'required|string',
             'price'         => 'required|numeric',
             'stock'         => 'required|numeric'
         ]);
@@ -44,8 +44,8 @@ class ProductService
     {
         //validate form
         $request->validate([
-            'title'         => 'required|min:5',
-            'description'   => 'required|min:10',
+            'name'         => 'required|string',
+            'description'   => 'required|string',
             'price'         => 'required|numeric',
             'stock'         => 'required|numeric'
         ]);
@@ -53,7 +53,7 @@ class ProductService
         //get product by ID
         $product = $this->productRepository->getById($id);
 
-        $product->title = $request->title;
+        $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;
         $product->stock = $request->stock;

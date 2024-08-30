@@ -1,15 +1,14 @@
 <?php
 
+use App\Models\Department;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ProductController; 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\TestController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::resource('/', \App\Http\Controllers\ProductController::class);
-Route::resource('/products', \App\Http\Controllers\ProductController::class);
-
+Route::view('/docs', 'scribe.index')->name('scribe');
+Route::view('/admin/docs', 'scribe_admin.index')->name('scribe-admin');
 
