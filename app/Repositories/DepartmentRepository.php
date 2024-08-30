@@ -10,7 +10,7 @@ class DepartmentRepository
 {
     public function getByCode($code)
     {       
-        return Department::query()->where('dep_code',$code);
+        return Department::query()->where('code',$code)->doesntExist();
     }
     
 }

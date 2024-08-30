@@ -6,11 +6,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 class Employee extends Authenticatable
 {
+   
     use HasFactory, Notifiable;
 
+    protected $table = 'employees';
     /**
      * The attributes that are mass assignable.
      *
@@ -42,8 +45,8 @@ class Employee extends Authenticatable
         ];
     }
 
-    public function department()
-    {
-        return $this->belongsTo(Department::class, 'dep_code');
-    }
+     public function department()
+     {
+         return $this->belongsTo(Department::class, 'code','dep_code');
+     }
 }

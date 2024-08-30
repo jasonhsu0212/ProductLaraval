@@ -2,16 +2,22 @@
 
 namespace app\Http\Controllers;
 
+use App\Helper\Logger;
+use App\Http\Controllers\Controller;
 use Knuckles\Scribe\Attributes\QueryParam;
 use Knuckles\Scribe\Attributes\ResponseField;
 use App\Services\EmployeeService;
-use Illuminate\Routing\Controller;
 use App\Http\Requests\EmployeeBaseRequest;
 use App\Http\Requests\EmployeeListRequest;
+use App\Http\Resources\EmployeeResource;
+use App\Http\Resources\PaginateResource;
+use GrahamCampbell\ResultType\Success;
+use Illuminate\Http\Response;
+use Illuminate\Routing\Controller as BaseController;
 
 /**
  * @group Employee
- *
+ * 
  * 員工管理
  */
 class EmployeeController extends Controller
@@ -33,10 +39,16 @@ class EmployeeController extends Controller
     #[ResponseField('dep_code', 'string', '部門編碼')]
     public function index(EmployeeListRequest $employeeRequest)
     {
+        // return $this->success((object) [
+        //     'code' => 'test',
+        //     'message' => 'sss']);
         $keyword = $employeeRequest->input('keyword', null);
         $dep_code = $employeeRequest->input('dep_code', null);
-
-        return $this->employeeService->filter($keyword, $dep_code);
+        $page = $employeeRequest->input('page', 1);
+        $pre_page = $employeeRequest->input('per_page', 10);
+        Logger::info('EmployeeController.index', ['keyword' => $keyword, 'dep_code' => $dep_code, 'page' => $page, 'pre_page' => $pre_page]);
+        $data = $this->employeeService->filter($keyword, $dep_code, $page, $pre_page);
+        return $this->success(PaginateResource::make($data, EmployeeResource::class), '查詢成功');
     }
 
     /**
@@ -48,7 +60,8 @@ class EmployeeController extends Controller
     #[ResponseField('message', 'string', '訊息')]
     public function createEmployee(EmployeeBaseRequest $request)
     {
-        return $this->employeeService->create($request);
+        $data = $this->employeeService->create($request);
+        return $this->success($data);
     }
 
     /**
@@ -61,7 +74,8 @@ class EmployeeController extends Controller
     #[ResponseField('message', 'string', '訊息')]
     public function updateEmployee(EmployeeBaseRequest $request, $id)
     {
-        return $this->employeeService->updateBase($request, $id);
+        $data = $this->employeeService->updateBase($request, $id);
+        return $this->success($data);
     }
 
     /**

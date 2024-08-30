@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('employees', function (Blueprint $table) {
-            $table->foreign('dep_code')->references('code')->on('departments');
-        });
-        //
+         Schema::table('employees', function (Blueprint $table) {
+             $table->foreign('dep_code')->references('code')->on('departments');
+         });
+        
     }
 
     /**

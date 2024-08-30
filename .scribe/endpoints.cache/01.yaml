@@ -58,8 +58,11 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 200
-        content: '[{"name":"John Doe","email":"john@gmail.com","dep_code":"IT"}]'
+        status: 500
+        content: |-
+          {
+              "message": "Server Error"
+          }
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -67,12 +70,30 @@ endpoints:
         description: null
         custom: []
     responseFields:
-      id:
-        name: id
-        description: 員工ID
+      name:
+        name: name
+        description: 員工名稱
         required: true
         example: null
-        type: integer
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: 信件
+        required: true
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      dep_code:
+        name: dep_code
+        description: 部門編碼
+        required: true
+        example: null
+        type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
@@ -133,7 +154,7 @@ endpoints:
         name: password
         description: 密碼.
         required: true
-        example: .u5ws)
+        example: '"Ho&FHw.56'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -142,10 +163,28 @@ endpoints:
       name: John
       email: abc@gmail.com
       dep_code: IT
-      password: .u5ws)
+      password: '"Ho&FHw.56'
     fileParameters: []
     responses: []
-    responseFields: []
+    responseFields:
+      code:
+        name: code
+        description: 狀態碼
+        required: true
+        example: null
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      message:
+        name: message
+        description: 訊息
+        required: true
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
     auth: []
     controller: null
     method: null
@@ -172,25 +211,25 @@ endpoints:
         name: employee
         description: 'The employee.'
         required: true
-        example: 3
-        type: integer
+        example: quisquam
+        type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      employee: 3
+      employee: quisquam
     queryParameters:
       id:
         name: id
         description: 員工ID
         required: true
-        example: 8
+        example: 10
         type: integer
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanQueryParameters:
-      id: 8
+      id: 10
     bodyParameters:
       name:
         name: name
@@ -223,7 +262,7 @@ endpoints:
         name: password
         description: 密碼.
         required: true
-        example: 's=+,5o?G6>\SL_NNW'
+        example: '(nf:^o'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -232,10 +271,28 @@ endpoints:
       name: John
       email: abc@gmail.com
       dep_code: IT
-      password: 's=+,5o?G6>\SL_NNW'
+      password: '(nf:^o'
     fileParameters: []
     responses: []
-    responseFields: []
+    responseFields:
+      code:
+        name: code
+        description: 狀態碼
+        required: true
+        example: null
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      message:
+        name: message
+        description: 訊息
+        required: true
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
     auth: []
     controller: null
     method: null

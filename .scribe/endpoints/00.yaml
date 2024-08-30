@@ -38,23 +38,72 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         custom: []
+      id:
+        name: id
+        description: 員工ID
+        required: true
+        example: 20
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
     cleanQueryParameters:
       page: 1
       keyword: 可食用
+      id: 20
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
     responses:
       -
-        status: 200
-        content: '{"current_page":1,"data":[],"first_page_url":"http:\/\/localhost\/api\/products?page=1","from":null,"last_page":1,"last_page_url":"http:\/\/localhost\/api\/products?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/localhost\/api\/products?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"http:\/\/localhost\/api\/products","per_page":1,"prev_page_url":null,"to":null,"total":0}'
+        status: 500
+        content: |-
+          {
+              "message": "Server Error"
+          }
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           access-control-allow-origin: '*'
         description: null
         custom: []
-    responseFields: []
+    responseFields:
+      name:
+        name: name
+        description: 產品名稱
+        required: true
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      description:
+        name: description
+        description: 產品說明
+        required: true
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      price:
+        name: price
+        description: 金額
+        required: true
+        example: null
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      stock:
+        name: stock
+        description: 數量
+        required: true
+        example: null
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
     auth: []
     controller: null
     method: null
@@ -124,7 +173,25 @@ endpoints:
       stock: 5
     fileParameters: []
     responses: []
-    responseFields: []
+    responseFields:
+      status:
+        name: status
+        description: 狀態
+        required: true
+        example: null
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      message:
+        name: message
+        description: 訊息
+        required: true
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
     auth: []
     controller: null
     method: null
@@ -151,15 +218,25 @@ endpoints:
         name: product
         description: 'The product.'
         required: true
-        example: 1
+        example: 9
         type: integer
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      product: 1
-    queryParameters: []
-    cleanQueryParameters: []
+      product: 9
+    queryParameters:
+      id:
+        name: id
+        description: 員工ID
+        required: true
+        example: 6
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanQueryParameters:
+      id: 6
     bodyParameters:
       name:
         name: name
@@ -204,7 +281,25 @@ endpoints:
       stock: 5
     fileParameters: []
     responses: []
-    responseFields: []
+    responseFields:
+      status:
+        name: status
+        description: 狀態
+        required: true
+        example: null
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      message:
+        name: message
+        description: 訊息
+        required: true
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
     auth: []
     controller: null
     method: null
@@ -231,30 +326,48 @@ endpoints:
         name: product
         description: 'The product.'
         required: true
-        example: 1
+        example: 11
         type: integer
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      product: 1
+      product: 11
     queryParameters:
       id:
         name: id
         description: 員工ID
         required: true
-        example: 7
+        example: 11
         type: integer
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanQueryParameters:
-      id: 7
+      id: 11
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
     responses: []
-    responseFields: []
+    responseFields:
+      status:
+        name: status
+        description: 狀態
+        required: true
+        example: null
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      message:
+        name: message
+        description: 訊息
+        required: true
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
     auth: []
     controller: null
     method: null

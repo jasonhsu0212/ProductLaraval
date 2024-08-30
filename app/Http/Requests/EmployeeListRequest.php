@@ -19,6 +19,7 @@ class EmployeeListRequest extends FormRequest
             'page' => 'required|integer',
             'dep_code' => 'nullable|string',
             'keyword' => 'nullable|string',
+            'per_page' => 'required|integer',
         ];
     }
 
@@ -26,6 +27,7 @@ class EmployeeListRequest extends FormRequest
     {
         return [
             'page'=>['description'=>'頁碼','example'=>1],
+            'per_page'=>['description'=>'每頁顯示筆數','example'=>10],
             'dep_code'=>['description'=>'部門編碼','example'=>'IT'],
             'keyword'=>['description'=>'模糊查詢用戶名稱或信箱','example'=>'John'],
         ];

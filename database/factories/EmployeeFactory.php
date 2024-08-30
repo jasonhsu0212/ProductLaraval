@@ -17,7 +17,7 @@ class EmployeeFactory extends Factory
      */
     public function definition(): array
     {
-        $departments = Department::factory(3)->for(Department::factory()->state(['code' => 'IT']))->create();
+        // $departments = Department::factory(3)->for(Department::factory()->state(['code' => 'IT']))->create();
 
         return [
             'name' => $this->faker->name(),

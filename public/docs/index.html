@@ -110,7 +110,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: August 29, 2024</li>
+        <li>Last updated: August 30, 2024</li>
     </ul>
 </div>
 
@@ -178,7 +178,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-employees">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (500):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -189,13 +189,9 @@ content-type: application/json
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
-<code class="language-json" style="max-height: 300px;">[
-    {
-        &quot;name&quot;: &quot;John Doe&quot;,
-        &quot;email&quot;: &quot;john@gmail.com&quot;,
-        &quot;dep_code&quot;: &quot;IT&quot;
-    }
-]</code>
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Server Error&quot;
+}</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-employees" hidden>
@@ -306,11 +302,25 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <h3>Response</h3>
     <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
     <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
  &nbsp;
 <br>
-<p>員工ID</p>
+<p>員工名稱</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+<br>
+<p>信件</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>dep_code</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+<br>
+<p>部門編碼</p>
         </div>
                         <h2 id="employee-POSTapi-employees">新增員工</h2>
 
@@ -332,7 +342,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"name\": \"John\",
     \"email\": \"abc@gmail.com\",
     \"dep_code\": \"IT\",
-    \"password\": \".u5ws)\"
+    \"password\": \"\\\"Ho&amp;FHw.56\"
 }"
 </code></pre></div>
 
@@ -351,7 +361,7 @@ let body = {
     "name": "John",
     "email": "abc@gmail.com",
     "dep_code": "IT",
-    "password": ".u5ws)"
+    "password": "\"Ho&amp;FHw.56"
 };
 
 fetch(url, {
@@ -473,14 +483,30 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-employees"
-               value=".u5ws)"
+               value=""Ho&FHw.56"
                data-component="body">
     <br>
-<p>密碼. Example: <code>.u5ws)</code></p>
+<p>密碼. Example: <code>"Ho&amp;FHw.56</code></p>
         </div>
         </form>
 
-                    <h2 id="employee-PUTapi-employees--employee-">員工修改</h2>
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+    <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+<br>
+<p>狀態碼</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>message</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+<br>
+<p>訊息</p>
+        </div>
+                        <h2 id="employee-PUTapi-employees--employee-">員工修改</h2>
 
 <p>
 </p>
@@ -493,25 +519,25 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/employees/3?id=8" \
+    "http://localhost/api/employees/quisquam?id=10" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"name\": \"John\",
     \"email\": \"abc@gmail.com\",
     \"dep_code\": \"IT\",
-    \"password\": \"s=+,5o?G6&gt;\\\\SL_NNW\"
+    \"password\": \"(nf:^o\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/employees/3"
+    "http://localhost/api/employees/quisquam"
 );
 
 const params = {
-    "id": "8",
+    "id": "10",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -525,7 +551,7 @@ let body = {
     "name": "John",
     "email": "abc@gmail.com",
     "dep_code": "IT",
-    "password": "s=+,5o?G6&gt;\\SL_NNW"
+    "password": "(nf:^o"
 };
 
 fetch(url, {
@@ -610,14 +636,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>employee</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
+<small>string</small>&nbsp;
  &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="employee"                data-endpoint="PUTapi-employees--employee-"
-               value="3"
+                <input type="text" style="display: none"
+                              name="employee"                data-endpoint="PUTapi-employees--employee-"
+               value="quisquam"
                data-component="url">
     <br>
-<p>The employee. Example: <code>3</code></p>
+<p>The employee. Example: <code>quisquam</code></p>
             </div>
                         <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
                                     <div style="padding-left: 28px; clear: unset;">
@@ -626,10 +652,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-employees--employee-"
-               value="8"
+               value="10"
                data-component="query">
     <br>
-<p>員工ID Example: <code>8</code></p>
+<p>員工ID Example: <code>10</code></p>
             </div>
                         <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -671,14 +697,30 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="PUTapi-employees--employee-"
-               value="s=+,5o?G6>\SL_NNW"
+               value="(nf:^o"
                data-component="body">
     <br>
-<p>密碼. Example: <code>s=+,5o?G6&gt;\SL_NNW</code></p>
+<p>密碼. Example: <code>(nf:^o</code></p>
         </div>
         </form>
 
-                <h1 id="product">Product</h1>
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+    <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+<br>
+<p>狀態碼</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>message</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+<br>
+<p>訊息</p>
+        </div>
+                    <h1 id="product">Product</h1>
 
     
 
@@ -695,7 +737,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/products?page=1&amp;keyword=%E5%8F%AF%E9%A3%9F%E7%94%A8" \
+    --get "http://localhost/api/products?page=1&amp;keyword=%E5%8F%AF%E9%A3%9F%E7%94%A8&amp;id=20" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -708,6 +750,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 const params = {
     "page": "1",
     "keyword": "可食用",
+    "id": "20",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -726,7 +769,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-products">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (500):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -738,35 +781,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;current_page&quot;: 1,
-    &quot;data&quot;: [],
-    &quot;first_page_url&quot;: &quot;http://localhost/api/products?page=1&quot;,
-    &quot;from&quot;: null,
-    &quot;last_page&quot;: 1,
-    &quot;last_page_url&quot;: &quot;http://localhost/api/products?page=1&quot;,
-    &quot;links&quot;: [
-        {
-            &quot;url&quot;: null,
-            &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
-            &quot;active&quot;: false
-        },
-        {
-            &quot;url&quot;: &quot;http://localhost/api/products?page=1&quot;,
-            &quot;label&quot;: &quot;1&quot;,
-            &quot;active&quot;: true
-        },
-        {
-            &quot;url&quot;: null,
-            &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
-            &quot;active&quot;: false
-        }
-    ],
-    &quot;next_page_url&quot;: null,
-    &quot;path&quot;: &quot;http://localhost/api/products&quot;,
-    &quot;per_page&quot;: 1,
-    &quot;prev_page_url&quot;: null,
-    &quot;to&quot;: null,
-    &quot;total&quot;: 0
+    &quot;message&quot;: &quot;Server Error&quot;
 }</code>
  </pre>
     </span>
@@ -862,9 +877,50 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>模糊查詢產品名稱或內容. Example: <code>可食用</code></p>
             </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="GETapi-products"
+               value="20"
+               data-component="query">
+    <br>
+<p>員工ID Example: <code>20</code></p>
+            </div>
                 </form>
 
-                    <h2 id="product-POSTapi-products">新增產品</h2>
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+    <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+<br>
+<p>產品名稱</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+<br>
+<p>產品說明</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>price</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+<br>
+<p>金額</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>stock</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+<br>
+<p>數量</p>
+        </div>
+                        <h2 id="product-POSTapi-products">新增產品</h2>
 
 <p>
 </p>
@@ -1032,7 +1088,23 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="product-PUTapi-products--product-">修改產品</h2>
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+    <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+<br>
+<p>狀態</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>message</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+<br>
+<p>訊息</p>
+        </div>
+                        <h2 id="product-PUTapi-products--product-">修改產品</h2>
 
 <p>
 </p>
@@ -1045,7 +1117,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/products/1" \
+    "http://localhost/api/products/9?id=6" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1059,8 +1131,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/products/1"
+    "http://localhost/api/products/9"
 );
+
+const params = {
+    "id": "6",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Content-Type": "application/json",
@@ -1160,12 +1238,24 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="product"                data-endpoint="PUTapi-products--product-"
-               value="1"
+               value="9"
                data-component="url">
     <br>
-<p>The product. Example: <code>1</code></p>
+<p>The product. Example: <code>9</code></p>
             </div>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="PUTapi-products--product-"
+               value="6"
+               data-component="query">
+    <br>
+<p>員工ID Example: <code>6</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
@@ -1212,7 +1302,23 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="product-DELETEapi-products--product-">刪除產品</h2>
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+    <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+<br>
+<p>狀態</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>message</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+<br>
+<p>訊息</p>
+        </div>
+                        <h2 id="product-DELETEapi-products--product-">刪除產品</h2>
 
 <p>
 </p>
@@ -1225,18 +1331,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/products/1?id=7" \
+    "http://localhost/api/products/11?id=11" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/products/1"
+    "http://localhost/api/products/11"
 );
 
 const params = {
-    "id": "7",
+    "id": "11",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -1331,10 +1437,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="product"                data-endpoint="DELETEapi-products--product-"
-               value="1"
+               value="11"
                data-component="url">
     <br>
-<p>The product. Example: <code>1</code></p>
+<p>The product. Example: <code>11</code></p>
             </div>
                         <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
                                     <div style="padding-left: 28px; clear: unset;">
@@ -1343,14 +1449,30 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-products--product-"
-               value="7"
+               value="11"
                data-component="query">
     <br>
-<p>員工ID Example: <code>7</code></p>
+<p>員工ID Example: <code>11</code></p>
             </div>
                 </form>
 
-            
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+    <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+<br>
+<p>狀態</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>message</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+<br>
+<p>訊息</p>
+        </div>
+                
 
         
     </div>

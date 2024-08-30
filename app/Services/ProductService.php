@@ -19,9 +19,10 @@ class ProductService
          $this->productRepository=$productRepository;
      }
 
-     public function filter(string | null $keyword,int $page)
+     public function filter(string | null $keyword,int $page,int $pre_page)
      {        
-         $products = $this->productRepository->find($keyword,$page);
+         $products = $this->productRepository->find($keyword,$page,$pre_page);
+         
          return response(ProductResource::collection($products), Response::HTTP_OK);
      }
 

@@ -18,6 +18,7 @@ class ProductListRequest extends FormRequest
         return [
             'page' => 'required|integer',
             'keyword' => 'nullable|string',
+            'per_page' => 'required|integer',
         ];
     }
 
@@ -26,6 +27,7 @@ class ProductListRequest extends FormRequest
         return [
             'page'=>['description'=>'頁碼','example'=>1],
             'keyword'=>['description'=>'模糊查詢產品名稱或內容','example'=>'可食用'],
+            'per_page'=>['description'=>'每頁顯示筆數','example'=>10],
         ];
     }
 }

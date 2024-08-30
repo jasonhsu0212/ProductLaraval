@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Prodict Laravel API",
-        "_postman_id": "445d10ef-09a0-4182-91ec-58286e288770",
+        "_postman_id": "67c723eb-0d8b-4e41-a37b-3b519e6c3a15",
         "description": "API\u6587\u6a94",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -80,8 +80,8 @@
                                     "value": "*"
                                 }
                             ],
-                            "code": 200,
-                            "body": "[{\"name\":\"John Doe\",\"email\":\"john@gmail.com\",\"dep_code\":\"IT\"}]",
+                            "code": 500,
+                            "body": "{\n    \"message\": \"Server Error\"\n}",
                             "name": ""
                         }
                     ]
@@ -108,7 +108,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"John\",\"email\":\"abc@gmail.com\",\"dep_code\":\"IT\",\"password\":\".u5ws)\"}"
+                            "raw": "{\"name\":\"John\",\"email\":\"abc@gmail.com\",\"dep_code\":\"IT\",\"password\":\"\\\"Ho&FHw.56\"}"
                         },
                         "description": "",
                         "auth": {
@@ -126,17 +126,17 @@
                             "query": [
                                 {
                                     "key": "id",
-                                    "value": "8",
+                                    "value": "10",
                                     "description": "\u54e1\u5de5ID",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/employees\/:employee?id=8",
+                            "raw": "{{baseUrl}}\/api\/employees\/:employee?id=10",
                             "variable": [
                                 {
                                     "id": "employee",
                                     "key": "employee",
-                                    "value": "3",
+                                    "value": "quisquam",
                                     "description": "The employee."
                                 }
                             ]
@@ -154,7 +154,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"John\",\"email\":\"abc@gmail.com\",\"dep_code\":\"IT\",\"password\":\"s=+,5o?G6>\\\\SL_NNW\"}"
+                            "raw": "{\"name\":\"John\",\"email\":\"abc@gmail.com\",\"dep_code\":\"IT\",\"password\":\"(nf:^o\"}"
                         },
                         "description": "",
                         "auth": {
@@ -187,9 +187,15 @@
                                     "value": "%E5%8F%AF%E9%A3%9F%E7%94%A8",
                                     "description": "\u6a21\u7cca\u67e5\u8a62\u7522\u54c1\u540d\u7a31\u6216\u5167\u5bb9.",
                                     "disabled": false
+                                },
+                                {
+                                    "key": "id",
+                                    "value": "20",
+                                    "description": "\u54e1\u5de5ID",
+                                    "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/products?page=1&keyword=%E5%8F%AF%E9%A3%9F%E7%94%A8"
+                            "raw": "{{baseUrl}}\/api\/products?page=1&keyword=%E5%8F%AF%E9%A3%9F%E7%94%A8&id=20"
                         },
                         "method": "GET",
                         "header": [
@@ -224,8 +230,8 @@
                                     "value": "*"
                                 }
                             ],
-                            "code": 200,
-                            "body": "{\"current_page\":1,\"data\":[],\"first_page_url\":\"http:\\\/\\\/localhost\\\/api\\\/products?page=1\",\"from\":null,\"last_page\":1,\"last_page_url\":\"http:\\\/\\\/localhost\\\/api\\\/products?page=1\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/products?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":null,\"path\":\"http:\\\/\\\/localhost\\\/api\\\/products\",\"per_page\":1,\"prev_page_url\":null,\"to\":null,\"total\":0}",
+                            "code": 500,
+                            "body": "{\n    \"message\": \"Server Error\"\n}",
                             "name": ""
                         }
                     ]
@@ -267,13 +273,20 @@
                         "url": {
                             "host": "{{baseUrl}}",
                             "path": "api\/products\/:product",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/products\/:product",
+                            "query": [
+                                {
+                                    "key": "id",
+                                    "value": "6",
+                                    "description": "\u54e1\u5de5ID",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/products\/:product?id=6",
                             "variable": [
                                 {
                                     "id": "product",
                                     "key": "product",
-                                    "value": "1",
+                                    "value": "9",
                                     "description": "The product."
                                 }
                             ]
@@ -309,17 +322,17 @@
                             "query": [
                                 {
                                     "key": "id",
-                                    "value": "7",
+                                    "value": "11",
                                     "description": "\u54e1\u5de5ID",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/products\/:product?id=7",
+                            "raw": "{{baseUrl}}\/api\/products\/:product?id=11",
                             "variable": [
                                 {
                                     "id": "product",
                                     "key": "product",
-                                    "value": "1",
+                                    "value": "11",
                                     "description": "The product."
                                 }
                             ]

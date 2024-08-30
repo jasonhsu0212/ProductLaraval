@@ -3,20 +3,14 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-
-use App\Notifications\ResetPasswordNotification;
-use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
-
 class User extends Authenticatable
 {
-    use  HasFactory, Notifiable, CanResetPassword;
+    use  HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -24,12 +18,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'account',
-        'user_name',
+        'name',
         'email',
         'password',
-        'status',
-        'email_verified_at',
     ];
 
     /**
@@ -39,7 +30,6 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'status',
         'remember_token',
     ];
 
@@ -52,25 +42,26 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function findForPassport($username)
-    {
-        return $this->where('account', $username)->first();
-    }
-
-    public function employee(): HasOne
-    {
-        return $this->hasOne(Employee::class);
-    }
-
-   
-
-    // public function applications(): BelongsToMany
+    // public function userTokens()
     // {
-    //     return $this->belongsToMany(Application::class, 'application_user')
-    //         ->withPivot('status', 'is_end', 'order', 'time', 'description')
-    //         ->using(ApplicationUser::class)
-    //         ->wherePivot('deleted_at', null);
+    //     return $this->hasMany(PersonalAccessToken::class, "tokenable_id");
     // }
 
-    
+    // public function checkIns()
+    // {
+    //     return $this->hasMany(CheckIn::class, 'user_id', 'id');
+    // }
+
+    /**
+     * 近五筆的簽到記錄
+     */
+    // public function recentCheckIns()
+    // {
+    //     return $this->hasMany(CheckIn::class, 'user_id', 'id')->latest()->limit(5);
+    // }
+
+    // public function userImage()
+    // {
+    //     return $this->hasOne(UserImage::class, 'user_id', 'id');
+    // }
 }

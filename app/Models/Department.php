@@ -11,11 +11,11 @@ class Department extends Model
 
     protected $fillable = ['name','code'];
 
-    protected $with = ['employees'];
+    protected $table = 'departments';
 
     public function employees()
     {
-        return $this->hasMany(Employee::class);
+        return $this->hasMany(Employee::class, 'dep_code','code');
     }
 
 }

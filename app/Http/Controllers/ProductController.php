@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 //import model product
 
 use App\Services\ProductService;
-use Illuminate\Routing\Controller;
 use Knuckles\Scribe\Attributes\QueryParam;
 use Knuckles\Scribe\Attributes\ResponseField;
 use App\Http\Requests\ProductListRequest;
 use App\Http\Requests\ProductBaseRequest;
+use App\Http\Resources\ProductResource;
+use App\Http\Resources\PaginateResource;
 
 /**
  * @group Product
@@ -38,9 +39,11 @@ class ProductController extends Controller
     public function index(ProductListRequest $productRequest)
     {
         $keyword = $productRequest->input('keyword', null);
-        $page = $productRequest->input('page', null);
+        $page = $productRequest->input('page', 1);
+        $pre_page = $productRequest->input('per_page', 10);
         //render view with products
-        return $this->productService->filter($keyword, $page);
+        $data = $this->productService->filter($keyword, $page,$pre_page);
+        return $this->success(PaginateResource::make($data, ProductResource::class));
     }
 
 

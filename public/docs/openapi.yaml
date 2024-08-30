@@ -44,19 +44,18 @@ paths:
             description: 模糊查詢用戶名稱或信箱.
             example: John
       responses:
-        200:
+        500:
           description: ''
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
+                type: object
                 example:
-                  -
-                    name: 'John Doe'
-                    email: john@gmail.com
-                    dep_code: IT
+                  message: 'Server Error'
+                properties:
+                  message:
+                    type: string
+                    example: 'Server Error'
       tags:
         - Employee
       security: []
@@ -90,7 +89,7 @@ paths:
                 password:
                   type: string
                   description: 密碼.
-                  example: .u5ws)
+                  example: '"Ho&FHw.56'
               required:
                 - name
                 - email
@@ -107,12 +106,12 @@ paths:
           in: query
           name: id
           description: 員工ID
-          example: 8
+          example: 10
           required: true
           schema:
             type: integer
             description: 員工ID
-            example: 8
+            example: 10
       responses: {  }
       tags:
         - Employee
@@ -138,7 +137,7 @@ paths:
                 password:
                   type: string
                   description: 密碼.
-                  example: 's=+,5o?G6>\SL_NNW'
+                  example: '(nf:^o'
               required:
                 - name
                 - email
@@ -150,10 +149,10 @@ paths:
         in: path
         name: employee
         description: 'The employee.'
-        example: 3
+        example: quisquam
         required: true
         schema:
-          type: integer
+          type: string
   /api/products:
     get:
       summary: 查詢產品
@@ -180,103 +179,29 @@ paths:
             type: string
             description: 模糊查詢產品名稱或內容.
             example: 可食用
+        -
+          in: query
+          name: id
+          description: 員工ID
+          example: 20
+          required: true
+          schema:
+            type: integer
+            description: 員工ID
+            example: 20
       responses:
-        200:
+        500:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  current_page: 1
-                  data: []
-                  first_page_url: 'http://localhost/api/products?page=1'
-                  from: null
-                  last_page: 1
-                  last_page_url: 'http://localhost/api/products?page=1'
-                  links:
-                    -
-                      url: null
-                      label: '&laquo; Previous'
-                      active: false
-                    -
-                      url: 'http://localhost/api/products?page=1'
-                      label: '1'
-                      active: true
-                    -
-                      url: null
-                      label: 'Next &raquo;'
-                      active: false
-                  next_page_url: null
-                  path: 'http://localhost/api/products'
-                  per_page: 1
-                  prev_page_url: null
-                  to: null
-                  total: 0
+                  message: 'Server Error'
                 properties:
-                  current_page:
-                    type: integer
-                    example: 1
-                  data:
-                    type: array
-                    example: []
-                  first_page_url:
+                  message:
                     type: string
-                    example: 'http://localhost/api/products?page=1'
-                  from:
-                    type: string
-                    example: null
-                  last_page:
-                    type: integer
-                    example: 1
-                  last_page_url:
-                    type: string
-                    example: 'http://localhost/api/products?page=1'
-                  links:
-                    type: array
-                    example:
-                      -
-                        url: null
-                        label: '&laquo; Previous'
-                        active: false
-                      -
-                        url: 'http://localhost/api/products?page=1'
-                        label: '1'
-                        active: true
-                      -
-                        url: null
-                        label: 'Next &raquo;'
-                        active: false
-                    items:
-                      type: object
-                      properties:
-                        url:
-                          type: string
-                          example: null
-                        label:
-                          type: string
-                          example: '&laquo; Previous'
-                        active:
-                          type: boolean
-                          example: false
-                  next_page_url:
-                    type: string
-                    example: null
-                  path:
-                    type: string
-                    example: 'http://localhost/api/products'
-                  per_page:
-                    type: integer
-                    example: 1
-                  prev_page_url:
-                    type: string
-                    example: null
-                  to:
-                    type: string
-                    example: null
-                  total:
-                    type: integer
-                    example: 0
+                    example: 'Server Error'
       tags:
         - Product
       security: []
@@ -321,7 +246,17 @@ paths:
       summary: 修改產品
       operationId: ''
       description: ''
-      parameters: []
+      parameters:
+        -
+          in: query
+          name: id
+          description: 員工ID
+          example: 6
+          required: true
+          schema:
+            type: integer
+            description: 員工ID
+            example: 6
       responses: {  }
       tags:
         - Product
@@ -362,12 +297,12 @@ paths:
           in: query
           name: id
           description: 員工ID
-          example: 7
+          example: 11
           required: true
           schema:
             type: integer
             description: 員工ID
-            example: 7
+            example: 11
       responses: {  }
       tags:
         - Product
@@ -377,7 +312,7 @@ paths:
         in: path
         name: product
         description: 'The product.'
-        example: 1
+        example: 9
         required: true
         schema:
           type: integer

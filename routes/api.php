@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Models\Department;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProductController; 
@@ -22,4 +23,7 @@ use Illuminate\Support\Facades\Route;
      Route::post('/employees', [EmployeeController::class, 'createEmployee']);
       Route::put('/employees/{employee}', [EmployeeController::class, 'updateEmployee']);
     });
+
+    route::post('/login', [AuthController::class, 'login']);
+
 
