@@ -38,7 +38,7 @@ class EmployeeService
             $dep = $this->departmentRepository->getByCode($request->dep_code);
 
             if (!$dep) {
-                return response()->json(['message' => 'Department not found'], 404);
+                return response()->json(['message' => 'Department not found','code'=>0], 404);
             }
 
             $request->validate([
@@ -50,9 +50,9 @@ class EmployeeService
 
             $this->employeeRepository->add($request);
 
-            return response()->json(['message' => 'Employee created'], 200);
+            return response()->json(['message' => 'Employee created','code'=>1], 200);
         } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage()], 500);
+            return response()->json(['message' => $e->getMessage(),'code'=>0], 500);
         }
     }
 
@@ -65,7 +65,7 @@ class EmployeeService
             $dep = $this->departmentRepository->getByCode($request->dep_code);
 
             if (!$dep) {
-                return response()->json(['message' => 'Department not found'], 404);
+                return response()->json(['message' => 'Department not found','code'=>0], 404);
             }
 
             //validate form
@@ -85,9 +85,9 @@ class EmployeeService
             //update employee 
             $this->employeeRepository->update($employee);
 
-            return response()->json(['message' => 'Employee updated'], 200);
+            return response()->json(['message' => 'Employee updated','code'=>1], 200);
         } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage()], 500);
+            return response()->json(['message' => $e->getMessage(),'code'=>0], 500);
         }
     }
 
@@ -101,7 +101,7 @@ class EmployeeService
         //update employee 
         $this->employeeRepository->update($employee);
 
-        return response()->json(['message' => 'Password changed'], 200);
+        return response()->json(['message' => 'Password changed','code'=>1], 200);
     }
 
     public function delete($id)
@@ -110,11 +110,11 @@ class EmployeeService
         $employee = $this->employeeRepository->getById($id);
 
         if (!$employee) {
-            return response()->json(['message' => 'Employee not found'], 404);
+            return response()->json(['message' => 'Employee not found','code'=>0], 404);
         }
         //delete employee
         $employee->delete($employee);
 
-        return response()->json(['message' => 'Employee deleted'], 200);
+        return response()->json(['message' => 'Employee deleted','code'=>1], 200);
     }
 }

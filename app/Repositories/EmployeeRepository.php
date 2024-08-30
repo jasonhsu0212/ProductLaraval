@@ -2,10 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Helper\Logger;
 use App\Models\Employee;
 use Illuminate\Support\Facades\DB;
-USE Illuminate\Support\Facades\Log;
 
 class EmployeeRepository 
 {
@@ -18,8 +16,9 @@ class EmployeeRepository
 
     public function find(string | null $keyword,string | null $department_code)
     {
-        $this->query = Employee::query();
-             
+        // $this->query = Employee::query();
+        $this->query = DB::table('employees');     
+
         if($department_code){
             
                 $this->query->where('dep_code','=',$department_code);
@@ -34,7 +33,9 @@ class EmployeeRepository
             
         }
 
-        $model = $this->query->get();
+        $model = $this->query->join('departments','dep_code','=','departments.code')
+        ->select('employees.*','departments.name as dep_name')                     
+        ->get();
 
         return $model;
     }
