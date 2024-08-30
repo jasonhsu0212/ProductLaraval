@@ -6,6 +6,8 @@ namespace App\Services;
 use App\Repositories;
 use App\Repositories\ProductRepository;
 use App\Models\Product;
+use App\Http\Resources\ProductResource;
+use Illuminate\Http\Response;
 
 class ProductService 
 {
@@ -18,8 +20,9 @@ class ProductService
      }
 
      public function filter(string | null $keyword,int $page)
-     {
-         return $this->productRepository->find($keyword,$page);
+     {        
+         $products = $this->productRepository->find($keyword,$page);
+         return response(ProductResource::collection($products), Response::HTTP_OK);
      }
 
     public function getById($id)
@@ -37,7 +40,9 @@ class ProductService
             'stock'         => 'required|numeric'
         ]);
 
-        $this->productRepository->add($request);     
+        $this->productRepository->add($request);    
+        
+        return response()->json(['message' => 'Product created','code'=>1], 200); 
     }
 
     public function update($request, $id)
@@ -61,6 +66,7 @@ class ProductService
          //update product 
         $this->productRepository->update($product);
            
+        return response()->json(['message' => 'Product update','code'=>1], 200);
     }
 
     public function delete($id)
@@ -71,6 +77,7 @@ class ProductService
          //delete product
          $product->delete($product);
  
+         return response()->json(['message' => 'Product delete','code'=>1], 200);
     }
     
 }

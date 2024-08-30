@@ -30,13 +30,16 @@ class ProductController extends Controller
      *
      * 查詢產品
      */
+    #[QueryParam('id', 'int', '員工ID', true)]
+    #[ResponseField('name', 'string', '產品名稱')]
+    #[ResponseField('description', 'string', '產品說明')]
+    #[ResponseField('price', 'int', '金額')]
+    #[ResponseField('stock', 'int', '數量')]
     public function index(ProductListRequest $productRequest)
     {
-        //get all products
         $keyword = $productRequest->input('keyword', null);
         $page = $productRequest->input('page', null);
         //render view with products
-        //return view('products.index', compact('products'));
         return $this->productService->filter($keyword, $page);
     }
 
@@ -46,15 +49,12 @@ class ProductController extends Controller
      * @group Product
      *
      * 新增產品
-     */
+     */    
+     #[ResponseField('status', 'int', '狀態')]
+     #[ResponseField('message', 'string', '訊息')]
     public function add(ProductBaseRequest $request)
-    {
-        //get product by ID
-        $products = $this->productService->create($request);
-        //redirect to index
-
-        return response()->json(['status' => 0, 'posts' =>  $products]);
-        //return response()->json(['status' => 0, 'posts' =>  $products]);
+    {      
+        return $this->productService->create($request);
     }
 
     /**
@@ -64,38 +64,24 @@ class ProductController extends Controller
      */
     #[QueryParam('id', 'int', '員工ID')]
     #[ResponseField('status', 'int', '狀態')]
+    #[ResponseField('message', 'string', '訊息')]
     public function show(string $id)
     {
-        //get product by ID
-        $product = $this->productService->getById($id);
-
-        //render view with product
-        //return view('products.show', compact('product'));
-        return response()->json(['status' => 0, 'posts' =>  $product]);
+        return $this->productService->getById($id);
     }
 
-    public function edit(string $id)
-    {
-        //get product by ID
-        $product = $this->productService->getById($id);
-
-        //render view with product
-        //return view('products.edit', compact('product'));
-        return response()->json(['status' => 0, 'posts' =>  $product]);
-    }
 
     /**
      * @group Product
      *
      * 修改產品
-     */
+     */    
+     #[QueryParam('id', 'int', '員工ID')]
+     #[ResponseField('status', 'int', '狀態')]
+     #[ResponseField('message', 'string', '訊息')]
     public function update(ProductBaseRequest $request, $id)
     {
-        $product = $this->productService->update($request, $id);
-
-        //redirect to index
-        //return redirect()->route('products.index')->with(['success' => 'Data Berhasil Diubah!']);
-        return response()->json(['status' => 0, 'posts' =>  $product]);
+        return  $this->productService->update($request, $id);
     }
 
     /**
@@ -104,12 +90,10 @@ class ProductController extends Controller
      * 刪除產品
      */
     #[QueryParam('id', 'int', '員工ID')]
+    #[ResponseField('status', 'int', '狀態')]
+    #[ResponseField('message', 'string', '訊息')]
     public function destroy($id)
     {
-        $product = $this->productService->delete($id);
-
-        //redirect to index
-        //return redirect()->route('products.index')->with(['success' => 'Data Berhasil Dihapus!']);
-        return response()->json(['status' => 0, 'posts' =>  $product]);
+        return $this->productService->delete($id);
     }
 }
