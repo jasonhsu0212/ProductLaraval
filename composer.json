@@ -8,9 +8,11 @@
         "php": "^8.2",
         "kint-php/kint": "^5.1",
         "laravel/framework": "^11.9",
+        "laravel/horizon": "^5.27",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "lcobucci/jwt": "^4.0"
+        "lcobucci/jwt": "^4.0",
+        "php-open-source-saver/jwt-auth": "^2.3"
     },
     "require-dev": {
         "brianium/paratest": "^7.5",
@@ -63,7 +65,11 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
-        }
+        },
+        "platform": {
+            "ext-pcntl": "8.3",
+            "ext-posix": "8.3"
+          }
     },
     "minimum-stability": "stable",
     "prefer-stable": true

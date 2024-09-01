@@ -65,6 +65,12 @@ class AuthController extends Controller
         if(!Auth::attempt($validateData)){
             return response('登入失敗',401);
         }
+
+
+        $credentials = $request->only('email', 'password');
+        $token = Auth::attempt($credentials);
+        Logger:info("token", $token);
+
         $user = $request->user();
         //$token = $user->createToken('Token');
         $token = User::find(1)->createToken('test');
