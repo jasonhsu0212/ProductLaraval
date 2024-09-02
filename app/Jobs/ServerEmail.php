@@ -59,7 +59,7 @@ class ServerEmail implements ShouldQueue
              Mail::send('welcome', [], function (Message $message) {
                  $message->sender('gn0039625@crepowermay.com');
                  $message->subject('Laravel 5.2 mail by Queue');
-                 $message->to('gn0039625@gmail.com');
+                 $message->to($this->email);
              });
 
 
