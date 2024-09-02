@@ -56,14 +56,13 @@ class EmployeeService
         $employee = $this->employeeRepository->getById($id);
 
         $dep = $this->departmentRepository->getByCode($request->dep_code);
-
-        if (!$dep) {
+        if ($dep) {
             return response()->json(['message' => 'Department not found', 'code' => 0], 404);
         }
 
         //validate form
         $request->validate([
-            'name'         => 'required|min:5',
+            'name'         => 'required|min:1',
             'email'   => 'required|min:10',
             'dep_code'         => 'required|min:1',
             'password'         => 'required|min:6',
