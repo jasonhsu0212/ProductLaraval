@@ -7,6 +7,26 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## 須設定JWT
+Laravel JWT 身份驗證套件，使用以下指令安裝：
+
+    composer require php-open-source-saver/jwt-auth
+
+使用以下指令將 JWT 設定文件從供應商複製到 confi/jwt.php：
+
+    php artisan vendor:publish --provider="PHPOpenSourceSaver\JWTAuth\Providers\LaravelServiceProvider"
+
+產成 JWT 令牌加密 (secret)：
+
+    php artisan jwt:secret
+
+JWT 加密產生在 .env：
+
+    JWT_SECRET = xxxxxxxx
+
+
+
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
