@@ -23,7 +23,8 @@ class ProductService
      {        
          $products = $this->productRepository->find($keyword,$page,$pre_page);
          
-         return response(ProductResource::collection($products), Response::HTTP_OK);
+         return $products;
+        // return response(ProductResource::collection($products), Response::HTTP_OK);
      }
 
     public function getById($id)
@@ -43,7 +44,7 @@ class ProductService
 
         $this->productRepository->add($request);    
         
-        return response()->json(['message' => 'Product created','code'=>1], 200); 
+        return true; 
     }
 
     public function update($request, $id)
