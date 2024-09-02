@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 //import model product
 
+use App\Helper\Logger;
 use App\Services\ProductService;
 use Knuckles\Scribe\Attributes\QueryParam;
 use Knuckles\Scribe\Attributes\ResponseField;
@@ -25,6 +26,7 @@ class ProductController extends Controller
     public function __construct(ProductService $productService)
     {
         $this->productService = $productService;
+        $this->middleware('auth:api');
     }
     /**
      * @group Product
@@ -38,11 +40,14 @@ class ProductController extends Controller
     #[ResponseField('stock', 'int', '數量')]
     public function index(ProductListRequest $productRequest)
     {
+        Logger::info('ProductController.index', ['keyword' => $productRequest->input('keyword', null), 'page' => $productRequest->input('page', 1), 'pre_page' => $productRequest->input('per_page', 10)]);
         $keyword = $productRequest->input('keyword', null);
         $page = $productRequest->input('page', 1);
         $pre_page = $productRequest->input('per_page', 10);
         //render view with products
         $data = $this->productService->filter($keyword, $page,$pre_page);
+        Logger::info('step', $data);
+        
         return $this->success(PaginateResource::make($data, ProductResource::class));
     }
 
@@ -57,7 +62,8 @@ class ProductController extends Controller
      #[ResponseField('message', 'string', '訊息')]
     public function add(ProductBaseRequest $request)
     {      
-        return $this->productService->create($request);
+        $data = $this->productService->create($request);
+        return $this->success($data);
     }
 
     /**
