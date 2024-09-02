@@ -25,7 +25,11 @@ JWT 加密產生在 .env：
     JWT_SECRET = xxxxxxxx
 
 
+## 須設定信箱
 
+    composer require symfony/mailgun-mailer symfony/http-client
+
+    composer require symfony/postmark-mailer symfony/http-client
 
 ## About Laravel
 
