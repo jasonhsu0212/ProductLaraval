@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'log'),
+    'default' => env('MAIL_MAILER', 'smtp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -49,12 +49,19 @@ return [
             'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url(env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
         ],
 
+        'mailgun' => [
+            'transport' => 'mailgun',
+            // 'domain' => env('MAILGUN_DOMAIN'),
+            // 'secret' => env('MAILGUN_SECRET'),
+            // 'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
+        ],  
         'ses' => [
             'transport' => 'ses',
         ],
 
         'postmark' => [
             'transport' => 'postmark',
+            // 'token' => env('POSTMARK_TOKEN'),
             // 'message_stream_id' => env('POSTMARK_MESSAGE_STREAM_ID'),
             // 'client' => [
             //     'timeout' => 5,
