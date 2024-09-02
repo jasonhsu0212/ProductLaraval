@@ -36,7 +36,7 @@ class EmployeeTest extends TestCase
         $this->assertNotEmpty($data['authorisation']['token']);
 
         $token = $data['authorisation']['token'];
-        Logger::info('token', $token);
+        // Logger::info('token', $token);
 
         // $this->withHeader(['Authorization' => 'Bearer ' . $token]);
     }
@@ -70,25 +70,25 @@ class EmployeeTest extends TestCase
     }
 
 
-    public function test_employee_create_successful_response(): void
-    {
-        $this->email =  'testaaaa@test.com';
-        $response = $this->post('/api/employees', [
-            'name' => 'test',
-            'email' => $this->email,
-            'dep_code' => 'HR',
-            'password' => bcrypt('1qaz@WSX')
-        ]);
-        $response->assertStatus(200);
+     public function test_employee_create_successful_response(): void
+     {
+         $this->email =  'testaaaa@test.com';
+         $response = $this->post('/api/employees', [
+             'name' => 'test',
+             'email' => $this->email,
+             'dep_code' => 'HR',
+             'password' => bcrypt('1qaz@WSX')
+         ]);
+         $response->assertStatus(200);
 
-        // 檢查回傳json格式
-        $response->assertJsonStructure(
-            [
-                'success',
-                'data'
-            ]
-        );
-    }
+         // 檢查回傳json格式
+         $response->assertJsonStructure(
+             [
+                 'success',
+                 'data'
+             ]
+         );
+     }
 
     public function test_employee_update_successful_response(): void
     {
@@ -99,9 +99,9 @@ class EmployeeTest extends TestCase
         $id = $model->id;
         //
         $response = $this->put('/api/employees/' . $id, [
-            'name' => 'test',
-            'email' => (new \DateTime())->format('Y-m-d H:i:s') . 'aaaa@test.com',
-            'dep_code' => 'HR',
+            'name' => '0000',
+            'email' => 'testaaaa@test.com',
+            'dep_code' => 'IT',
             'password' => bcrypt('1qaz@WSX')
         ]);
 
@@ -119,10 +119,10 @@ class EmployeeTest extends TestCase
 
     public function test_delete_employee_successful_response(): void
     {
-        $this->email = 'testaaaa@test.com';
-        Employee::where('email', $this->email)->delete();
-        $model = Employee::where('email', $this->email)->get();
-        $this->assertEmpty($model);
+         $this->email = 'testaaaa@test.com';
+         Employee::where('email', $this->email)->delete();
+         $model = Employee::where('email', $this->email)->get();
+         $this->assertEmpty($model);
     }
 
     public function test_delete_user_successful_response(): void
