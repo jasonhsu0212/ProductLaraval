@@ -11,9 +11,6 @@ use App\Http\Requests\EmployeeBaseRequest;
 use App\Http\Requests\EmployeeListRequest;
 use App\Http\Resources\EmployeeResource;
 use App\Http\Resources\PaginateResource;
-use GrahamCampbell\ResultType\Success;
-use Illuminate\Http\Response;
-use Illuminate\Routing\Controller as BaseController;
 
 /**
  * @group Employee
@@ -27,7 +24,7 @@ class EmployeeController extends Controller
     public function __construct(EmployeeService $employeeService)
     {
         $this->employeeService = $employeeService;
-         $this->middleware('auth:api');
+        $this->middleware('auth:api');
     }
 
     /**
