@@ -10,19 +10,19 @@
 ## 須設定JWT
 Laravel JWT 身份驗證套件，使用以下指令安裝：
 
-composer require php-open-source-saver/jwt-auth
+    composer require php-open-source-saver/jwt-auth
 
 使用以下指令將 JWT 設定文件從供應商複製到 confi/jwt.php：
 
-php artisan vendor:publish --provider="PHPOpenSourceSaver\JWTAuth\Providers\LaravelServiceProvider"
+    php artisan vendor:publish --provider="PHPOpenSourceSaver\JWTAuth\Providers\LaravelServiceProvider"
 
 產成 JWT 令牌加密 (secret)：
 
-php artisan jwt:secret
+    php artisan jwt:secret
 
 JWT 加密產生在 .env：
 
-JWT_SECRET = xxxxxxxx
+    JWT_SECRET = xxxxxxxx
 
 
 
